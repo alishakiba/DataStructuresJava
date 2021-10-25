@@ -20,7 +20,11 @@ public class Polynomial {
     }
 
     public Polynomial(double[] coefficient) {
-        // TODO: complete
+        this.coefficient = new double[coefficient.length];
+        this.degree = this.coefficient.length - 1;
+        for(int i = 0; i < this.coefficient.length; ++i) {
+            this.coefficient[i] = coefficient[i];
+        }
     }
 
     public Polynomial(Polynomial p) {
@@ -29,7 +33,7 @@ public class Polynomial {
 //        for(int i = 0; i < this.coefficient.length; ++i) {
 //            this.coefficient[i] = p.getCoefficient(i);
 //        }
-        this(p.getCoefficient());
+        this(p.getCoefficients());
     }
 
     public int getDegree() {
@@ -62,7 +66,7 @@ public class Polynomial {
         return this.coefficient[i];
     }
 
-    public double[] getCoefficient() {
+    public double[] getCoefficients() {
         return coefficient;
     }
 
@@ -108,6 +112,8 @@ public class Polynomial {
         }
     }
 
+    public static Polynomial negate(Polynomial p) { return null; }
+
     public static Polynomial sub(Polynomial p, Polynomial q) {
         return null;
     }
@@ -123,4 +129,5 @@ public class Polynomial {
     public static Polynomial mod(Polynomial p, Polynomial q) {
         return null;
     }
+
 }
