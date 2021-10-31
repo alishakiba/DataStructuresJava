@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class testPolynomial {
+public class TestPolynomial {
     @Test
     @DisplayName("Testing summation of two polynomials of different degrees")
     public void testPolynomialAddDifferntDegrees() {
