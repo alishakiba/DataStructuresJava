@@ -2,7 +2,7 @@ package ir.ac.vru.list;
 
 public class SinglyLinkedList {
     protected int size;
-    protected SingleNode first;
+    protected SingleNode<?> first;
 
     public SinglyLinkedList() {
         this.size = 0;
@@ -17,18 +17,18 @@ public class SinglyLinkedList {
         return this.size == 0;
     }
 
-    public SingleNode first() throws IllegalStateException {
+    public SingleNode<?> first() throws IllegalStateException {
         if (this.isEmpty())
             throw new IllegalStateException("List is empty.");
         else
             return this.first;
     }
 
-    public SingleNode last() throws IllegalStateException {
+    public SingleNode<?> last() throws IllegalStateException {
         if (this.isEmpty())
             throw new IllegalStateException("List is empty.");
         else {
-            SingleNode currentNode = null;
+            SingleNode<?> currentNode = null;
             for (
                     currentNode = first;
                     currentNode.next != null;
@@ -42,7 +42,7 @@ public class SinglyLinkedList {
         if (this.isEmpty())
             throw new IllegalStateException("List is empty.");
         else {
-            SingleNode node = this.first;
+            SingleNode<?> node = this.first;
             this.first.setNext(node.getNext());
         }
         this.size--;
@@ -55,8 +55,8 @@ public class SinglyLinkedList {
             this.first = null;
         }
         else {
-            SingleNode previous_node = this.first;
-            SingleNode current_node = previous_node.getNext();
+            SingleNode<?> previous_node = this.first;
+            SingleNode<?> current_node = previous_node.getNext();
             while (current_node.getNext() != null) {
                 previous_node = current_node;
                 current_node = previous_node.getNext();
@@ -66,7 +66,7 @@ public class SinglyLinkedList {
         this.size--;
     }
 
-    public void addFirst(SingleNode node) {
+    public void addFirst(SingleNode<?> node) {
         if (this.isEmpty()) {
             this.first = node;
             node.setNext(null);
@@ -78,7 +78,7 @@ public class SinglyLinkedList {
         this.size++;
     }
 
-    public void addLast(SingleNode node) {
+    public void addLast(SingleNode<?> node) {
         if (this.isEmpty()) {
             this.first = node;
             node.setNext(null);

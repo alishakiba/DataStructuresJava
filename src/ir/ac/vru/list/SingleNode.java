@@ -2,9 +2,9 @@ package ir.ac.vru.list;
 
 public class SingleNode<T> {
     protected T value;
-    protected SingleNode next;
+    protected SingleNode<?> next;
 
-    public SingleNode(T value, SingleNode next) {
+    public SingleNode(T value, SingleNode<?> next) {
         this.value = value;
         this.next = next;
     }
@@ -22,7 +22,7 @@ public class SingleNode<T> {
         return value;
     }
 
-    public SingleNode getNext() {
+    public SingleNode<?> getNext() {
         return next;
     }
 
@@ -30,7 +30,7 @@ public class SingleNode<T> {
         this.value = value;
     }
 
-    public void setNext(SingleNode next) {
+    public void setNext(SingleNode<?> next) {
         this.next = next;
     }
 
