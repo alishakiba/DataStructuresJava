@@ -4,9 +4,11 @@ import java.util.Scanner;
 
 public abstract class ComparableSort {
     // inplace sorting algorithm
-    public static void sort(Comparable[] array) {
-        throw new IllegalStateException("You cannot call sort from abstract ComparableSort class.");
+    public static void sort(Comparable[] array, ComparableSort algorithm) {
+        algorithm.sort_(array);
     }
+
+    protected abstract void sort_(Comparable[] array);
 
     protected static boolean less(Comparable v, Comparable w) {
         return v.compareTo(w) < 0;
@@ -46,7 +48,7 @@ public abstract class ComparableSort {
         }
         System.out.println("Array before sort:");
         show(array);
-        sort(array);
+        sort(array, new BubbleSort());
         assert isSorted(array);
         System.out.println("Array after sort:");
         show(array);
