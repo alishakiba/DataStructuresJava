@@ -1,5 +1,7 @@
 package ir.ac.vru.array;
 
+import java.util.Arrays;
+
 public class Queue<T> {
     private int size;
     private int front;
@@ -62,5 +64,19 @@ public class Queue<T> {
 
     public int length() {
         return (rear - front) % size;
+    }
+
+    @Override
+    public String toString() {
+        return "Queue{" +
+                "size=" + size +
+                ", front=" + front +
+                ", rear=" + rear +
+                ", data=" + Arrays.toString(data) +
+                '}';
+    }
+
+    public Queue<T> clone() {
+        return new Queue<>(this);
     }
 }
