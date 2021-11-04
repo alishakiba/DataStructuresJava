@@ -41,9 +41,13 @@ public class SinglyLinkedList {
     public void removeFirst() throws IllegalStateException {
         if (this.isEmpty())
             throw new IllegalStateException("List is empty.");
+        else if (this.size == 1) {
+            this.first = null;
+        }
         else {
             SingleNode<?> node = this.first;
-            this.first.setNext(node.getNext());
+            this.first = node.getNext();
+            this.first.setNext(null);
         }
         this.size--;
     }
@@ -73,7 +77,7 @@ public class SinglyLinkedList {
         }
         else {
             node.setNext(this.first);
-            this.first.setNext(node);
+            this.first = node;
         }
         this.size++;
     }
