@@ -63,7 +63,7 @@ public class Queue<T> {
     }
 
     public int length() {
-        return (rear - front) % size;
+        return (size + rear - front) % size;
     }
 
     @Override
