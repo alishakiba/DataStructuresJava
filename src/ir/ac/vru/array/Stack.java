@@ -58,4 +58,29 @@ public class Stack<T> {
     public int size() {
         return size;
     }
+
+    public void clear() {
+        top = -1;
+    }
+
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("[");
+        for (int i = 0; i < length(); i++) {
+            sb.append(data[i]);
+            if (i != length() - 1) {
+                sb.append(", ");
+            }
+        }
+        sb.append("]");
+        return sb.toString();
+    }
+
+    public Stack<T> clone() {
+        Stack<T> stack = new Stack<T>(this.size);
+        for(int i = 0; i <= this.top; i++) {
+            stack.push(this.data[i]);
+        }
+        return stack;
+    }
 }
