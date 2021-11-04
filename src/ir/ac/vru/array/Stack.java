@@ -5,27 +5,38 @@ import java.util.EmptyStackException;
 public class Stack<T> {
     private T[] data;
     private int top;
+    private int size;
 
     public Stack(int size) {
         data = (T[]) new Object[size];
+        this.size = size;
         top = -1;
     }
 
-    public void push(T item) {
+    public Stack(Stack<T> stack) {
+        this(stack.size());
+        this.data = (T[]) new Object[size];
+        for (int i = 0; i < stack.size(); i++) {
+            data[i] = stack.data[i];
+        }
+        top = stack.top;
+    }
+
+    public void push(T item) throws StackOverflowError {
         if (top == data.length - 1) {
-            throw new StackOverflowError();
+            throw new StackOverflowError("Stack is full");
         }
         data[++top] = item;
     }
 
-    public T pop() {
+    public T pop() throws EmptyStackException {
         if (top == -1) {
             throw new EmptyStackException();
         }
         return data[top--];
     }
 
-    public T peek() {
+    public T peek() throws EmptyStackException {
         if (top == -1) {
             throw new EmptyStackException();
         }
@@ -45,6 +56,6 @@ public class Stack<T> {
     }
 
     public int size() {
-        return data.length;
+        return size;
     }
 }
