@@ -36,7 +36,7 @@ public abstract class ComparableSort {
         System.out.println("]");
     }
 
-    public static void main(String[] args) {
+    protected static Integer[] getArray() {
         Scanner sc = new Scanner(System.in);
         int n = 0;
         System.out.println("How many integers do you want to enter?");
@@ -46,11 +46,7 @@ public abstract class ComparableSort {
         for(int i = 0; i < n; ++i) {
             array[i] = sc.nextInt();
         }
-        System.out.println("Array before sort:");
-        show(array);
-        sort(array, new BubbleSort());
-        assert isSorted(array);
-        System.out.println("Array after sort:");
-        show(array);
+        return array;
     }
+
 }

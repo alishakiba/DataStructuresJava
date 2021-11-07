@@ -1,5 +1,7 @@
 package ir.ac.vru.sort;
 
+import java.util.Scanner;
+
 public class BubbleSort extends ComparableSort {
     @Override
     protected void sort_(Comparable[] array) {
@@ -12,4 +14,18 @@ public class BubbleSort extends ComparableSort {
             }
         }
     }
+
+    public static void main(String[] args) {
+        Integer[] array = getArray();
+
+        System.out.println("Array before sort:");
+        show(array);
+
+        sort(array, new BubbleSort());
+        assert isSorted(array);
+
+        System.out.println("Array after sort:");
+        show(array);
+    }
+
 }
