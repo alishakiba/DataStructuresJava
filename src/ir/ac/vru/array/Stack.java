@@ -10,7 +10,7 @@ public class Stack<T> {
     public Stack(int size) {
         data = (T[]) new Object[size];
         this.size = size;
-        top = -1;
+        this.top = -1;
     }
 
     public Stack(Stack<T> stack) {
@@ -23,17 +23,28 @@ public class Stack<T> {
     }
 
     public void push(T item) throws StackOverflowError {
+//        if (this.isFull()) {
         if (top == data.length - 1) {
             throw new StackOverflowError("Stack is full");
         }
         data[++top] = item;
+        /*
+        top++;
+        data[top] = item;
+         */
     }
 
     public T pop() throws EmptyStackException {
+        // if (this.isEmpty()) {
         if (top == -1) {
             throw new EmptyStackException();
         }
         return data[top--];
+        /*
+        T temp = data[top];
+        top--;
+        return temp;
+         */
     }
 
     public T peek() throws EmptyStackException {
