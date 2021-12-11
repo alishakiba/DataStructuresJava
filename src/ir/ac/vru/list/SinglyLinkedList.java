@@ -93,4 +93,9 @@ public class SinglyLinkedList {
         }
         this.size++;
     }
+
+    public SingleNode<?> getAt(int i) {
+        throw new IllegalStateException("Not implemented");
+    }
+
 }
