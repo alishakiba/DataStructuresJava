@@ -6,7 +6,7 @@ public class Stack<T> {
 
     SinglyLinkedList data;
 
-    Stack() {
+    public Stack() {
         data = new SinglyLinkedList();
     }
 

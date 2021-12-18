@@ -8,7 +8,7 @@ public class SinglyLLQueue<T> {
 
     SinglyLinkedList data;
 
-    SinglyLLQueue() {
+    public SinglyLLQueue() {
         data = new SinglyLinkedList();
     }
 
