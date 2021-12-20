@@ -7,15 +7,16 @@ public class BST extends BinaryTree {
         super();
     }
 
-    public void insert(BinaryNode node) {
-        node.setLeft(null);
-        node.setRight(null);
-        node.setParent(null);
+    public void insert(BinaryNode newNode) {
+        newNode.setLeft(null);
+        newNode.setRight(null);
+        newNode.setParent(null);
 
         if (root == null) {
-            root = node;
+            root = newNode;
+            size++;
         } else {
-            insert(root, node);
+            insert(root, newNode);
         }
     }
 
@@ -24,25 +25,71 @@ public class BST extends BinaryTree {
             if (node.getLeft() == null) {
                 node.setLeft(newNode);
                 newNode.setParent(node);
+                size++;
             } else {
                 insert(node.getLeft(), newNode);
             }
-        } else {
+        } else if (newNode.compareTo(node) > 0) {
             if (node.getRight() == null) {
                 node.setRight(newNode);
                 newNode.setParent(node);
+                size++;
             } else {
                 insert(node.getRight(), newNode);
             }
         }
     }
 
-    public BinaryNode find(BinaryNode node) {
-        if (node == null) {
+    public void insert_iterative(BinaryNode newNode) {
+        newNode.setLeft(null);
+        newNode.setRight(null);
+        newNode.setParent(null);
+
+        if (root == null) {
+            root = newNode;
+            size++;
+        }
+        else {
+            BinaryNode node = root;
+            while (true) {
+                if (newNode.compareTo(node) < 0) {
+                    // going left
+                    if (node.getLeft() == null) {
+                        node.setLeft(newNode);
+                        newNode.setParent(node);
+                        size++;
+                        break;
+                    }
+                    else {
+                        node = node.getLeft();
+                    }
+                }
+                else if (newNode.compareTo(node) > 0) {
+                    // going right
+                    if (node.getRight() == null) {
+                        node.setRight(newNode);
+                        newNode.setParent(node);
+                        size++;
+                        break;
+                    }
+                    else {
+                        node = node.getRight();
+                    }
+                }
+                else {
+                    // we found it, so no need to insert it
+                    break;
+                }
+            }
+        }
+    }
+
+    public BinaryNode find(BinaryNode findNode) {
+        if (findNode == null) {
             return null;
         }
         else {
-            return find(root, node);
+            return find(root, findNode);
         }
     }
 
@@ -51,6 +98,7 @@ public class BST extends BinaryTree {
             return null;
         }
         else if (node.compareTo(findNode) == 0) {
+            // we found it
             return node;
         }
         else if (node.compareTo(findNode) > 0) {
@@ -58,6 +106,27 @@ public class BST extends BinaryTree {
         }
         else {
             return find(node.getRight(), findNode);
+        }
+    }
+
+    public BinaryNode find_iterative(BinaryNode findNode) {
+        throw new UnsupportedOperationException("Not supported yet.");
+        // TODO: implement this method
+    }
+
+    public BinaryNode findMin() {
+        return findMin(root);
+    }
+
+    protected BinaryNode findMin_iterative(BinaryNode node) {
+        if (node == null) {
+            return null;
+        }
+        else {
+            while (node.getLeft() != null) {
+                node = node.getLeft();
+            }
+            return node;
         }
     }
 
@@ -71,6 +140,21 @@ public class BST extends BinaryTree {
         else {
             return findMin(node.getLeft());
         }
+    }
+
+    public BinaryNode findMax() {
+        throw new UnsupportedOperationException("Not supported yet.");
+        // TODO: implement this method
+    }
+
+    protected BinaryNode findMax_iterative(BinaryNode node) {
+        throw new UnsupportedOperationException("Not supported yet.");
+        // TODO: implement this method
+    }
+
+    protected BinaryNode findMax(BinaryNode node) {
+        throw new UnsupportedOperationException("Not supported yet.");
+        // TODO: implement this method
     }
 
     public void delete(BinaryNode node) throws IllegalStateException{
@@ -140,14 +224,16 @@ public class BST extends BinaryTree {
             successor.setRight(deleteNode.getRight());
             if (deleteNode == root) {
                 root = successor;
+                successor.setParent(null);
             }
             else if (deleteNode.getParent().getLeft() == deleteNode) {
                 deleteNode.getParent().setLeft(successor);
+                successor.setParent(deleteNode.getParent());
             }
             else {
                 deleteNode.getParent().setRight(successor);
+                successor.setParent(deleteNode.getParent());
             }
-            successor.setParent(deleteNode.getParent());
         }
         // decrement the size
         size--;

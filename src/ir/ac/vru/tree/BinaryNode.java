@@ -43,6 +43,7 @@ public class BinaryNode<T extends Comparable<T>> implements Comparable<BinaryNod
 
     @Override
     public BinaryNode clone() {
+        // return new BinaryNode(data);
         return new BinaryNode(data, left, right, parent);
     }
 

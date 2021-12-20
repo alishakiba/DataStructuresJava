@@ -177,26 +177,4 @@ public class BinaryTree {
         }
         return nodes;
     }
-
-    public Vector<BinaryNode> breadth_first_recursive() {
-        Vector<BinaryNode> nodes = new Vector<BinaryNode>();
-        breadth_first_recursive(root, nodes);
-        return nodes;
-    }
-
-    protected void breadth_first_recursive(BinaryNode node, Vector<BinaryNode> nodes) {
-        if (node == null)
-            return;
-
-        SinglyLLQueue<BinaryNode> queue = new SinglyLLQueue<>();
-        queue.enqueue(node);
-        while (!queue.isEmpty()) {
-            BinaryNode temp = queue.dequeue();
-            nodes.add(temp);
-            if (temp.left != null)
-                queue.enqueue(temp.left);
-            if (temp.right != null)
-                queue.enqueue(temp.right);
-        }
-    }
 }
