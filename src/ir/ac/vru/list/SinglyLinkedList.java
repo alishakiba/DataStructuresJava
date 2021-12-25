@@ -47,7 +47,7 @@ public class SinglyLinkedList {
         else {
             SingleNode<?> node = this.first;
             this.first = node.getNext();
-            this.first.setNext(null);
+            node.setNext(null);
         }
         this.size--;
     }
